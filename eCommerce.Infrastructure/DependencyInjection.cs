@@ -9,7 +9,6 @@ namespace eCommerce.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            // TODO: add Infrastructure services to IoC container
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<DapperDbContext>();
             return services;

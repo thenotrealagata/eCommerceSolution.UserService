@@ -1,0 +1,28 @@
+﻿services:
+ postgres-container:
+  image: postgres:latest
+  environment:
+   - POSTGRES_USER=postgres
+   - POSTGRES_PASSWORD=admin
+   - POSTGRES_DB=eCommerceUsers
+  ports:
+   - "5432:5432"
+  volumes:
+   - ./postgres-init:/docker-entrypoint-initdb.d
+  networks:
+   - ecommerce-network
+
+ users-microservice:
+  image: users-microservice:1.0
+  environment:
+   POSTGRES_HOST: postgres-container
+   POSTGRES_PORT: 5432
+   POSTGRES_PASSWORD: admin
+  ports:
+   - "9090:9090"
+  networks:
+   - ecommerce-network
+
+networks:
+ ecommerce-network:
+  driver: bridge
