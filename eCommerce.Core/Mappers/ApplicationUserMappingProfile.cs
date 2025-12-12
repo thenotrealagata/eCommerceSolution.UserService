@@ -12,6 +12,7 @@ namespace eCommerce.Core.Mappers
                 .ForMember(dest => dest.Success, opt => opt.Ignore())
                 .ForMember(dest => dest.Token, opt => opt.Ignore());
 
+            CreateMap<ApplicationUser, UserResponse>();
             CreateMap<RegisterRequest, ApplicationUser>();
         }
     }

@@ -10,7 +10,7 @@
   volumes:
    - ./postgres-init:/docker-entrypoint-initdb.d
   networks:
-   - ecommerce-network
+   - users-network
 
  users-microservice:
   image: users-microservice:1.0
@@ -21,8 +21,9 @@
   ports:
    - "9090:9090"
   networks:
-   - ecommerce-network
+   - users-network
 
 networks:
- ecommerce-network:
-  driver: bridge
+ users-network:
+  external: true
+  name: ecommerce-network

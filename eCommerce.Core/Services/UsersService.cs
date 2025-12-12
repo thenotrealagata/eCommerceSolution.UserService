@@ -41,5 +41,18 @@ namespace eCommerce.Core.Services
 
             return _mapper.Map<AuthenticationResponse>(user) with { Success = true, Token = "token" };
         }
+
+        public async Task<UserResponse?> GetUserById(Guid id)
+        {
+            ApplicationUser? user = await _usersRepository.GetUserById(id);
+
+            if (user is null)
+            {
+                return null;
+            }
+
+            UserResponse userResponse = _mapper.Map<UserResponse>(user);
+            return userResponse;
+        }
     }
 }
